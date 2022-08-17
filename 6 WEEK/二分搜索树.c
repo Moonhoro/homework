@@ -98,7 +98,7 @@ Node removemin(Node root)
     node.left = removemin(root.left);
     return root;
 }
-// 删除最小值 并返回删除后的根
+// 删除最大值 并返回删除后的根
 Node removemax(Node root)
 {
     if (root == NULL)
@@ -131,13 +131,14 @@ Node remove(Node root, int e)
     {
         if (root.left == NULL)
         {
-            Node rightNode = root.right;
+            Node rightNode = (Node)malloc(sizeof(Node));
+            rightNode = root.right;
             root.right = NULL;
             return rightNode;
         }
         if (root.right == NULL)
-        {
-            Node leftNode = root.right;
+        {   Node leftNode = (Node)malloc(sizeof(Node));
+            leftNode = root.right;
             root.left = NULL;
             return leftNode;
         }
