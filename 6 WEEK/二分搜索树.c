@@ -22,7 +22,7 @@ Node add(Node root, int e)
         }
         else if (e < root->e)
         {
-            e->left = add(root->left, e);
+            root->left = add(root->left, e);
         }
         return root;
     }
