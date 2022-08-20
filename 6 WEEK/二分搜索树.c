@@ -1,14 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
 typedef struct Node
 {
     int e;
     struct Node *left, *right;
-} Node;
+} * Node;
 //添加新元素 返回根
 Node add(Node root, int e)
 {
     if (root == NULL)
     {
-        Node new = (Node)malloc(sizeof(Node));
+        Node new = malloc(sizeof(struct Node));
         new->e = e;
         new->left = NULL;
         new->right = NULL;
@@ -28,12 +30,12 @@ Node add(Node root, int e)
     }
 }
 //查询是否存在
-bool contans(Node root, int e)
+int contans(Node root, int e)
 {
     if (root == NULL)
-        return false;
+        return 0;
     if (root->e == e)
-        return true;
+        return 1;
     else if (e > root->e)
         return contans(root->right, e);
     else
@@ -53,7 +55,7 @@ void inOrder(Node root)
 {
     if (root == NULL)
         return;
-    inOrder(root.left);
+    inOrder(root->left);
     printf("%d", root->e);
     inOrder(root->right);
 }
@@ -71,45 +73,45 @@ Node minimum(Node root)
 {
     if (root == NULL)
         return;
-    if (root.left == NULL)
+    if (root->left == NULL)
         return root;
-    return minimum(root.left);
+    return minimum(root->left);
 }
 //寻找最大元素
 Node maxmum(Node root)
 {
     if (root == NULL)
         return;
-    if (root.right == NULL)
+    if (root->right == NULL)
         return root;
-    return maxmum(root.right);
+    return maxmum(root->right);
 }
 //删除最小值 并返回删除后的根
 Node removemin(Node root)
 {
     if (root == NULL)
         return NULL;
-    if (root.left == NULL)
+    if (root->left == NULL)
     {
-        Node rightNode = root.right;
-        root.right = NULL;
+        Node rightNode = root->right;
+        root->right = NULL;
         return rightNode;
     }
-    node.left = removemin(root.left);
+    root->left = removemin(root->left);
     return root;
 }
-// 删除最大值 并返回删除后的根
+// 删除最小值 并返回删除后的根
 Node removemax(Node root)
 {
     if (root == NULL)
         return NULL;
-    if (root.right == NULL)
+    if (root->right == NULL)
     {
-        Node leftNode = root.right;
-        root.left = NULL;
+        Node leftNode = root->right;
+        root->left = NULL;
         return leftNode;
     }
-    node.right = removemax(root.right);
+    root->right = removemax(root->right);
     return root;
 }
 //删除任意节点（后继）
@@ -117,34 +119,35 @@ Node remove(Node root, int e)
 {
     if (root == NULL)
         return;
-    if (e < root.e)
+    if (e < root->e)
     {
-        root.left = remove(root.left, e);
+        root->left = remove(root->left, e);
         return root;
     }
-    else if (e > root.e)
+    else if (e > root->e)
     {
-        root.right = remove(root.right, e);
+        root->right = remove(root->right, e);
         return root;
     }
     else
     {
-        if (root.left == NULL)
+        if (root->left == NULL)
         {
             Node rightNode = (Node)malloc(sizeof(Node));
-            rightNode = root.right;
-            root.right = NULL;
+            rightNode = root->right;
+            root->right = NULL;
             return rightNode;
         }
-        if (root.right == NULL)
-        {   Node leftNode = (Node)malloc(sizeof(Node));
-            leftNode = root.right;
-            root.left = NULL;
+        if (root->right == NULL)
+        {
+            Node leftNode = (Node)malloc(sizeof(Node));
+            leftNode = root->right;
+            root->left = NULL;
             return leftNode;
         }
-        Node successor = minimum(root.right);
-        successor.right = removemin(root.right);
-        successor.left = root.left;
-        root.left = root.right = NULL;
+        Node successor = minimum(root->right);
+        successor->right = removemin(root->right);
+        successor->left = root->left;
+        root->left = root->right = NULL;
     }
 }
