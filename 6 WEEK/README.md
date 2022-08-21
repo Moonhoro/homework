@@ -19,6 +19,6 @@
 
 parent(i)=(i-1)/2
 
-left child(i)=2*i
+left child(i)=2*i+1
 
-right child(i) =2*i+1
+right child(i) =2*i+2
