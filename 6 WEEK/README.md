@@ -16,6 +16,9 @@
 ### 堆
 某个节点的值不大于其父亲节点（最大堆)
 完全二叉树
+
 parent(i)=(i-1)/2
+
 left child(i)=2*i
+
 right child(i) =2*i+1
