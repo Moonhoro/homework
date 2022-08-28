@@ -1,4 +1,8 @@
+本周观看了第9周 堆，优先队列和堆排序后半部分 和 第10周 冒泡排序，希尔排序和排序算法大总结
 
+Solution_two 为剑指Offer第40题
+
+Solution为leetcode215题
 
 # 基于比较的排序算法
 
@@ -70,6 +74,3 @@
 
 不稳定
 
-Solution_two 为剑指Offer第40题
-
-Solution为leetcode215题
